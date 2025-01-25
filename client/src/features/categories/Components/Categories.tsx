@@ -24,7 +24,7 @@ const Categories = () => {
     <>
       {loading ? (<CircularProgress />) : (
         <List
-          sx={{ width: '100%', maxWidth: 360 }}
+          sx={{ width: "100%", minWidth: 220, marginRight: 50 }}
           component="nav"
           aria-labelledby="nested-list-subheader"
           subheader={
@@ -37,7 +37,7 @@ const Categories = () => {
         >
 
           <ListItemButton>
-            <ListItemText primary="Sent mail" />
+            <ListItemText primary="All items"/>
           </ListItemButton>
 
           {categories.map((category) => (

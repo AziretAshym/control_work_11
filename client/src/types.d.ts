@@ -49,5 +49,5 @@ export interface Item {
   description: string;
   price: number;
   image: string;
-  category: string;
+  category: {title: string};
 }
