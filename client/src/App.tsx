@@ -20,6 +20,7 @@ const App = () => {
         <Container maxWidth="xl">
           <Routes>
             <Route path="/" element={<Items />} />
+            <Route path="/items" element={<Items />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="add-new-item" element={<NewItem />}/>

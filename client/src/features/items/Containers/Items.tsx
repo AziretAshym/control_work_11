@@ -7,6 +7,7 @@ import { selectError, selectItems, selectLoading } from '../itemsSlice.ts';
 import { apiUrl } from '../../../globalConstants.ts';
 import Categories from '../../categories/Components/Categories.tsx';
 import Box from '@mui/material/Box';
+import { NavLink } from 'react-router-dom';
 
 const Items = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +17,7 @@ const Items = () => {
   const error = useAppSelector(selectError);
 
   useEffect(() => {
-    dispatch(getItems());
+    dispatch(getItems({ categoryId: null }));
   }, [dispatch]);
 
   return (
@@ -31,10 +32,9 @@ const Items = () => {
         </Typography>
 
         {isLoading ? (
-          <div>
+          <Box sx={{display: "flex", justifyContent: "center"}}>
             <CircularProgress />
-            <Typography variant="body2">Loading items...</Typography>
-          </div>
+          </Box>
         ) : (
           <>
             {items.length === 0 ? (
@@ -44,8 +44,8 @@ const Items = () => {
                 {items.map((item) => {
                   const itemImg = `${apiUrl}/${item.image}`;
                   return (
-                    <Grid key={item._id}>
-                      <Card sx={{width: 300}}>
+                    <Grid key={item._id} sx={{width: "330px"}}>
+                      <Card component={NavLink} to={`/item-details/${item._id}`}>
                         <CardMedia
                           component="img"
                           height="200"

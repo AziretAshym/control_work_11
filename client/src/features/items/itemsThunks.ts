@@ -3,11 +3,17 @@ import { Item, ItemMutation } from '../../types';
 import axiosApi from '../../axiosApi.ts';
 import { RootState } from '../../app/store.ts';
 
-export const getItems = createAsyncThunk<Item[], void>(
+export const getItems = createAsyncThunk<Item[], { categoryId: string | null }>(
   "items/getItems",
-  async () => {
-    const response = await axiosApi<Item[]>("/items");
-    return response.data;
+  async ({ categoryId }) => {
+    try {
+      const filter = categoryId ? `/items?categoryId=${categoryId}` : '/items';
+      const response = await axiosApi.get<Item[]>(filter);
+      return response.data;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
   }
 );
 

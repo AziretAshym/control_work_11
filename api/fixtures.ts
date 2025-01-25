@@ -45,7 +45,7 @@ const run = async () => {
         },
     );
 
-    const items = await Item.create(
+    const [] = await Item.create(
         {
             title: "Item",
             description: "Item",
