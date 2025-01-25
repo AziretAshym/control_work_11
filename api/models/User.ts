@@ -30,10 +30,12 @@ const userSchema = new mongoose.Schema<HydratedDocument<UserFields>, UserModel, 
         type: String,
         required: true
     },
+    displayName: String,
+    phoneNumber: String,
     token: {
         type: String,
         required: true,
-    }
+    },
 });
 
 userSchema.pre('save', async function(next) {

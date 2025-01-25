@@ -10,6 +10,8 @@ usersRouter.post("/register", async (req, res, next) => {
         const user = new User({
             username: req.body.username,
             password: req.body.password,
+            displayName: req.body.displayName,
+            phoneNumber: req.body.phoneNumber
         });
 
         user.generateToken();
@@ -60,7 +62,7 @@ usersRouter.delete('/sessions', async (req, res, next) => {
     try {
         const token = req.get('Authorization');
 
-        const success = {message: 'Success'};
+        const success = {message: 'User deleted successfully'};
 
         if (!token) {
             res.send(success);
