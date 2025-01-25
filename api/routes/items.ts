@@ -87,6 +87,32 @@ itemsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, next)
 });
 
 
+itemsRouter.delete('/:id', auth, async (req, res, next) => {
+    const { id } = req.params;
+
+    const expressReq = req as RequestWithUser;
+    const user = expressReq.user;
+
+    try {
+        const item = await Item.findById(id);
+        if (!item) {
+            res.status(404).send({message: 'Item not found'});
+            return;
+        }
+
+        if (!item.user || item.user._id.toString() !== user._id.toString()) {
+            res.status(403).send({message: 'You are not the seller of this item'});
+            return;
+        }
+        await item.deleteOne();
+        res.status(200).send({message: 'Item deleted successfully'});
+    } catch (e) {
+        next(e);
+    }
+});
+
+
+
 
 
 export default itemsRouter;
