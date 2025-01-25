@@ -31,7 +31,19 @@ const userSchema = new mongoose.Schema<HydratedDocument<UserFields>, UserModel, 
         required: true
     },
     displayName: String,
-    phoneNumber: String,
+    phoneNumber: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: {
+            validator: async function (this: HydratedDocument<UserFields>, phoneNumber: string): Promise<boolean> {
+                if (!this.isModified('phoneNumber')) return true;
+                const user: HydratedDocument<UserFields> | null = await User.findOne({phoneNumber});
+                return !Boolean(user);
+            },
+            message: 'This phoneNumber is already registered',
+        }
+    },
     token: {
         type: String,
         required: true,
