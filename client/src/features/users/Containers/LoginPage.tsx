@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { RegisterMutation } from "../../types";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid2";
-import Box from "@mui/material/Box";
+import React, { useState } from 'react';
+import { LoginMutation } from '../../../types';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid2';
+import Box from '@mui/material/Box';
 import LockOpen from '@mui/icons-material/LockOpen';
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
-import { selectLoginError } from "./userSlice.ts";
-import { NavLink, useNavigate } from "react-router-dom";
-import { login } from "./userThunks.ts";
-import { Alert, IconButton, InputAdornment } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks.ts';
+import { selectLoginError } from '../userSlice.ts';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { login } from '../userThunks.ts';
+import { Alert, IconButton, InputAdornment } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const RegisterPage = () => {
-  const [form, setForm] = useState<RegisterMutation>({
+  const [form, setForm] = useState<LoginMutation>({
     username: "",
     password: "",
   });

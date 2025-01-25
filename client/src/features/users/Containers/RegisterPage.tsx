@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RegisterMutation } from "../../types";
+import { RegisterMutation } from "../../../types";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,10 +9,10 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
-import { selectRegisterError } from "./userSlice.ts";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks.ts";
+import { selectRegisterError } from "../userSlice.ts";
 import { NavLink, useNavigate } from "react-router-dom";
-import { register } from "./userThunks.ts";
+import { register } from "../userThunks.ts";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 

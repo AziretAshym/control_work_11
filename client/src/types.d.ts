@@ -36,3 +36,18 @@ export interface ValidationError {
 export interface GlobalError {
   error: string;
 }
+
+export interface ICategory {
+  _id: string;
+  title: string;
+}
+
+export interface Item {
+  _id: string;
+  user: { username: string };
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  category: string;
+}

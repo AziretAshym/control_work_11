@@ -11,7 +11,7 @@ const AppToolbar = () => {
   const user = useAppSelector(selectUser);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, marginBottom: "40px"}}>
       <AppBar position="static">
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography
