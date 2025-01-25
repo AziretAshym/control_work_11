@@ -3,15 +3,16 @@ import { Alert, Card, CardContent, CardMedia, CircularProgress, Typography } fro
 import Grid from '@mui/material/Grid2';
 import { getItems } from '../itemsThunks';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks.ts';
-import { selectError, selectItem, selectLoading } from '../itemsSlice.ts';
+import { selectError, selectItems, selectLoading } from '../itemsSlice.ts';
 import { apiUrl } from '../../../globalConstants.ts';
 import Categories from '../../categories/Components/Categories.tsx';
 import Box from '@mui/material/Box';
+import { NavLink } from 'react-router-dom';
 
 const Items = () => {
   const dispatch = useAppDispatch();
 
-  const items = useAppSelector(selectItem);
+  const items = useAppSelector(selectItems);
   const isLoading = useAppSelector(selectLoading);
   const error = useAppSelector(selectError);
 
@@ -31,10 +32,9 @@ const Items = () => {
         </Typography>
 
         {isLoading ? (
-          <div>
+          <Box sx={{display: "flex", justifyContent: "center"}}>
             <CircularProgress />
-            <Typography variant="body2">Loading items...</Typography>
-          </div>
+          </Box>
         ) : (
           <>
             {items.length === 0 ? (
@@ -44,8 +44,8 @@ const Items = () => {
                 {items.map((item) => {
                   const itemImg = `${apiUrl}/${item.image}`;
                   return (
-                    <Grid key={item._id}>
-                      <Card sx={{width: 300}}>
+                    <Grid key={item._id} sx={{width: "300px"}}>
+                      <Card component={NavLink} to={`/item-details/${item._id}`}>
                         <CardMedia
                           component="img"
                           height="200"

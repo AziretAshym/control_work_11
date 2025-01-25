@@ -11,6 +11,14 @@ export const getItems = createAsyncThunk<Item[], void>(
   },
 );
 
+export const getItemById = createAsyncThunk<Item, string>(
+  "posts/getPostById",
+  async (id) => {
+    const { data } = await axiosApi.get<Item>(`/items/${id}`);
+    return data;
+  },
+);
+
 
 export const addNewItem = createAsyncThunk<void, ItemMutation, { state: RootState }>(
   "items/addNewItem",

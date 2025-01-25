@@ -44,7 +44,10 @@ export interface ICategory {
 
 export interface Item {
   _id: string;
-  user: { username: string };
+  user: {
+    username: string;
+    phoneNumber: string;
+  };
   title: string;
   description: string;
   price: number;
