@@ -103,6 +103,7 @@ itemsRouter.delete('/:id', auth, async (req, res, next) => {
         if (!item.user || item.user._id.toString() !== user._id.toString()) {
             res.status(403).send({message: 'You are not the seller of this item'});
             return;
+
         }
         await item.deleteOne();
         res.status(200).send({message: 'Item deleted successfully'});
