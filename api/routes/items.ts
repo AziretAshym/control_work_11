@@ -54,24 +54,32 @@ itemsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, next)
     const expressReq = req as RequestWithUser;
     const user = expressReq.user;
 
+
     try {
-        const category = await Category.findById(req.body.category);
-        if (!category) {
-            res.status(404).send({message: 'Category not found'});
+        const { title, description, price, category } = req.body;
+        if (!title || !description || !price || !category) {
+            res.status(400).send({ message: 'All fields are required' });
+            return;
+        }
+
+        const foundCategory = await Category.findById(category);
+        if (!foundCategory) {
+            res.status(404).send({ message: 'Category not found' });
             return;
         }
 
         const newItem = {
-            title: req.body.title,
-            description: req.body.description,
-            price: req.body.price,
-            image: req.file ? 'images/' + req.file.filename : null,
-            category: req.body.category,
+            title,
+            description,
+            price,
+            category,
             user: user._id,
+            image: req.file ? 'images/' + req.file.filename : null
         };
 
         const item = new Item(newItem);
         await item.save();
+
         res.status(201).send(item);
     } catch (e) {
         next(e);

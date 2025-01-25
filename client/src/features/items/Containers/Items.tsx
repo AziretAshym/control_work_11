@@ -7,7 +7,6 @@ import { selectError, selectItems, selectLoading } from '../itemsSlice.ts';
 import { apiUrl } from '../../../globalConstants.ts';
 import Categories from '../../categories/Components/Categories.tsx';
 import Box from '@mui/material/Box';
-import { NavLink } from 'react-router-dom';
 
 const Items = () => {
   const dispatch = useAppDispatch();
@@ -32,9 +31,10 @@ const Items = () => {
         </Typography>
 
         {isLoading ? (
-          <Box sx={{display: "flex", justifyContent: "center"}}>
+          <div>
             <CircularProgress />
-          </Box>
+            <Typography variant="body2">Loading items...</Typography>
+          </div>
         ) : (
           <>
             {items.length === 0 ? (
@@ -44,8 +44,8 @@ const Items = () => {
                 {items.map((item) => {
                   const itemImg = `${apiUrl}/${item.image}`;
                   return (
-                    <Grid key={item._id} sx={{width: "300px"}}>
-                      <Card component={NavLink} to={`/item-details/${item._id}`}>
+                    <Grid key={item._id}>
+                      <Card sx={{width: 300}}>
                         <CardMedia
                           component="img"
                           height="200"

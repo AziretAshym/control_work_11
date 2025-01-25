@@ -8,7 +8,7 @@ export const getItems = createAsyncThunk<Item[], void>(
   async () => {
     const response = await axiosApi<Item[]>("/items");
     return response.data;
-  },
+  }
 );
 
 export const getItemById = createAsyncThunk<Item, string>(
@@ -16,9 +16,8 @@ export const getItemById = createAsyncThunk<Item, string>(
   async (id) => {
     const { data } = await axiosApi.get<Item>(`/items/${id}`);
     return data;
-  },
+  }
 );
-
 
 export const addNewItem = createAsyncThunk<void, ItemMutation, { state: RootState }>(
   "items/addNewItem",
@@ -40,10 +39,14 @@ export const addNewItem = createAsyncThunk<void, ItemMutation, { state: RootStat
       }
     });
 
-    await axiosApi.post("/items/", formData, {
-      headers: {
-        Authorization: token,
-      },
-    });
+    try {
+      await axiosApi.post("/items/", formData, {
+        headers: {
+          Authorization: token,
+        },
+      });
+    } catch (e) {
+      console.error(e)
+    }
   }
 );

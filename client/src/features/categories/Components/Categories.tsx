@@ -24,7 +24,7 @@ const Categories = () => {
     <>
       {loading ? (<CircularProgress />) : (
         <List
-          sx={{ width: "100%", minWidth: 220, marginRight: 50 }}
+          sx={{ width: "100%", maxWidth: 320, marginRight: 50 }}
           component="nav"
           aria-labelledby="nested-list-subheader"
           subheader={

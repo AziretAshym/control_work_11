@@ -30,6 +30,7 @@ const itemsSlice = createSlice({
     builder
       .addCase(getItems.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(getItems.fulfilled, (state, action) => {
         state.loading = false;
@@ -38,7 +39,7 @@ const itemsSlice = createSlice({
       })
       .addCase(getItems.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || null;
+        state.error = action.error.message || 'Failed to fetch items';
       })
 
       .addCase(addNewItem.pending, (state) => {
@@ -49,7 +50,7 @@ const itemsSlice = createSlice({
       })
       .addCase(addNewItem.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || null;
+        state.error = action.error.message || 'Failed to add item';
       })
 
       .addCase(getItemById.pending, (state) => {
@@ -63,7 +64,7 @@ const itemsSlice = createSlice({
       })
       .addCase(getItemById.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || null;
+        state.error = action.error.message || 'Failed to fetch item details';
       });
   },
 });
