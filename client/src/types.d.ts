@@ -51,3 +51,11 @@ export interface Item {
   image: string;
   category: {title: string};
 }
+
+export interface ItemMutation {
+  title: string;
+  description: string;
+  price: number;
+  image: File | null;
+  category: string
+}

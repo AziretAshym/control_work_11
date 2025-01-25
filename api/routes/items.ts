@@ -57,7 +57,7 @@ itemsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, next)
     try {
         const category = await Category.findById(req.body.category);
         if (!category) {
-            res.status(404).send('Category not found');
+            res.status(404).send({message: 'Category not found'});
             return;
         }
 
@@ -72,12 +72,12 @@ itemsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, next)
 
         const item = new Item(newItem);
         await item.save();
-
         res.status(201).send(item);
     } catch (e) {
         next(e);
     }
 });
+
 
 
 

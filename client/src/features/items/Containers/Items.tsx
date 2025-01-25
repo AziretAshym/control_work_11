@@ -45,7 +45,7 @@ const Items = () => {
                   const itemImg = `${apiUrl}/${item.image}`;
                   return (
                     <Grid key={item._id}>
-                      <Card>
+                      <Card sx={{width: 300}}>
                         <CardMedia
                           component="img"
                           height="200"

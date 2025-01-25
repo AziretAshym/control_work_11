@@ -4,7 +4,7 @@ import { logout } from '../../../src/features/users/userThunks.ts';
 import { unsetUser } from '../../../src/features/users/userSlice.ts';
 import { useAppDispatch } from '../../../src/app/hooks.ts';
 import { UserFields } from '../../../src/types';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 interface Props {
   user: UserFields;
@@ -30,6 +30,12 @@ const UserMenu: React.FC<Props> = ({ user }) => {
   };
   return (
     <>
+      <Button
+        component={NavLink}
+        to="/add-new-item"
+        color="inherit">
+        Add new Item
+      </Button>
       <Button onClick={handleClick} color="inherit">
         Hello, {user.username}!
       </Button>

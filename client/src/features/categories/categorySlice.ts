@@ -14,6 +14,8 @@ const initialState: CategoriesState = {
   error: null,
 };
 
+export const selectCategories = (state: { categories: CategoriesState }) => state.categories.categories;
+
 const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
